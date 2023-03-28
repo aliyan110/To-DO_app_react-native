@@ -3,6 +3,7 @@ this repo contains a basic react native application. the application allows the 
 the App contains a FlatList that renders item in order and remove the one that is tapped on 
 
 the Preview of App looks like this
-<img src="Preview/app_preview.gif" width="400" height="800">
+
+<img src="Preview/app_preview.gif" width="200" height="433">
 
 
