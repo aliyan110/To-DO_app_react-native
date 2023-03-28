@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, TextInput, TouchableOpacity, Text, FlatList } from 'react-native'
-import { useFonts } from 'expo-font';
+import { StyleSheet, View, TextInput, TouchableOpacity, Text, FlatList, Alert } from 'react-native'
 
-let taskArray = [
+let taskList = [
     {key: '1', task: "Setup React Native and environment variable"},
     {key: '2', task: "Create a To-do application in react native"}
 ]
@@ -10,6 +9,7 @@ let taskArray = [
 const screen = function taskInputScreen( {navigation} ) {
     
     const [ task, setTask ] = useState('')
+    const [taskArray, setTaskArray] = useState(taskList)
     
     const addTask = ()=>{
         if(task == "")return
@@ -22,9 +22,18 @@ const screen = function taskInputScreen( {navigation} ) {
         setTask(input)
     }
 
+    const removeTask= (item) => {
+        const newTaskArray = taskArray.filter(t => t.task !== item.task);
+        Alert.alert("Remove", "Are you sure you want to remove this Image", [
+            { text: "Yes", onPress: () => setTaskArray(newTaskArray) },
+            { text: "No" }
+          ]);
+        
+    }
+
     const renderTask = ({ item }) => {
         return(
-        <TouchableOpacity style={styles.listItem}>
+        <TouchableOpacity onPress= {()=> removeTask(item)} style={styles.listItem}>
             <Text style={styles.buttonText}>{`${item.task}`}</Text>
         </TouchableOpacity>)
     }
